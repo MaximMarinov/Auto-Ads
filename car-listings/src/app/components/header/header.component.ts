@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private isLoggedIn: AuthService) { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
   }
