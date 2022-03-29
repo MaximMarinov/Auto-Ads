@@ -1,3 +1,3 @@
 # Car-Listings
 
-Web Application usign Firebase as back-end an Angular as front-end
+Web Application usign Firebase as back-end and Angular as front-end
