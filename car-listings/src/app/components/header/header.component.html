@@ -7,7 +7,7 @@
         </div>
 
         <div *ngIf="authService.isLoggedIn">
-            <a routerLink="sign-in" (click)="authService.SignOut()">Log Out</a>
+            <a (click)="authService.SignOut()">Log Out</a>
             <a routerLink="add-lisitng">Add Listing</a>
         </div>
     </div>

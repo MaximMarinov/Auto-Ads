@@ -13,6 +13,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { HomeComponent } from './components/home/home.component';
+import { SecureFullContent, SecureInnerPages } from './shared/guard/auth.guard';
 
 @NgModule({
   declarations: [

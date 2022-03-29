@@ -41,7 +41,7 @@ export class AuthService {
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.ngZone.run(() => {
-          this.router.navigate(['/']);
+          this.router.navigate(['']);
         });
         this.SetUserData(result.user);
       })
@@ -57,7 +57,10 @@ export class AuthService {
       .then((result) => {
         /* Call the SendVerificaitonMail() function when new user sign 
         up and returns promise */
-        this.SendVerificationMail();
+        // this.SendVerificationMail();
+        this.ngZone.run(() => {
+          this.router.navigate(['']);
+        });
         this.SetUserData(result.user);
       })
       .catch((error) => {
@@ -104,16 +107,14 @@ export class AuthService {
   SignInAnonymously() {
     const auth = getAuth();
     signInAnonymously(auth)
-    .then(() => {
-      // Signed in..
+    .then((result) => {
+      this.ngZone.run(() => {
+        this.router.navigate(['/']);
+      });
+      this.SetUserData(result.user);
     })
     .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-
-      window.alert(errorCode);
-      window.alert(errorMessage);
-      // ...
+      window.alert(error);
     });
   }
   
@@ -157,5 +158,7 @@ export class AuthService {
       localStorage.removeItem('user');
       this.router.navigate(['sign-in']);
     });
-  }
+  }  
 }
+
+ 
