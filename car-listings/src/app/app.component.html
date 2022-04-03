@@ -1,2 +1,45 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
+<!-- Toolbar -->
+<mat-toolbar color="primary" class="header">
+  <div>Car Listings</div>
+  <span class="nav-tool-items">
+    <mat-icon (click)="sidenav.toggle()" class="hamburger">menu</mat-icon>
+  </span>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <!-- Sidenav -->
+  <mat-sidenav
+    #sidenav
+    [mode]="isBiggerScreen() ? 'over' : 'side'"
+    [(opened)]="opened"
+    [fixedInViewport]="true"
+    [fixedTopGap]
+  >
+    <mat-nav-list>
+      <a mat-list-item routerLinkActive="active" routerLink="/add-listing">
+        <mat-icon>add</mat-icon> Add Listing
+      </a>
+      <a mat-list-item routerLinkActive="active" routerLink="/listings-list">
+        <mat-icon>format_list_bulleted</mat-icon> View Listings
+      </a>
+      <div *ngIf="!authService.isLoggedIn">
+        <a mat-list-item routerLinkActive="active" routerLink="/sign-in">
+          <mat-icon>login</mat-icon> Sign In
+        </a>
+        <a mat-list-item routerLinkActive="active" routerLink="/sign-up">
+          <mat-icon>how_to_reg</mat-icon> Sign Up
+        </a>
+      </div>
+      <div *ngIf="authService.isLoggedIn">
+        <a mat-list-item routerLinkActive="active" (click)="authService.SignOut()">
+          <mat-icon>logout</mat-icon> Sign Out
+        </a>
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Main content -->
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
