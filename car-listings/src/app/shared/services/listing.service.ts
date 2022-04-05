@@ -7,6 +7,7 @@ import {
   AngularFireList,
   AngularFireObject,
 } from '@angular/fire/compat/database';
+import { AuthService } from './auth.service';
 
 
 @Injectable({
@@ -16,12 +17,13 @@ export class ListingService {
   listingsRef: AngularFireList<any>;
   listingRef: AngularFireObject<any>;
 
-  constructor(private db: AngularFireDatabase) {}
+  constructor(private db: AngularFireDatabase, private auth: AuthService) {}
 
   /* Create listing */
   AddListing(listing: Listing) {
     this.listingsRef
       .push({
+        creatorUID: this.auth.getUserUID(),
         image_url: listing.image_url,
         title: listing.title,
         year: listing.year,
@@ -38,11 +40,14 @@ export class ListingService {
       .catch((error) => {
         this.errorMgmt(error);
       });
+
+      
   }
 
   /* Get listing */
   GetListing(id: string) {
     this.listingRef = this.db.object('listings-list/' + id);
+    console.log(this.listingsRef);
     return this.listingRef;
   }
 
@@ -51,6 +56,8 @@ export class ListingService {
     this.listingsRef = this.db.list('listings-list');
     return this.listingsRef;
   }
+
+  
 
   /* Update listing */
   UpdateListing(id, listing: Listing) {

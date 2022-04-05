@@ -143,9 +143,6 @@ export class AuthService {
     const userData: User = {
       uid: user.uid,
       email: user.email,
-      displayName: user.displayName,
-      photoURL: user.photoURL,
-      emailVerified: user.emailVerified,
     };
     return userRef.set(userData, {
       merge: true,
@@ -159,6 +156,11 @@ export class AuthService {
       this.router.navigate(['sign-in']);
     });
   }  
+
+  getUserUID() {
+    return this.userData.uid;
+  }
+
 }
 
  

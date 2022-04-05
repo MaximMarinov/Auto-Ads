@@ -10,7 +10,7 @@ import { AuthService } from './shared/services/auth.service';
 
 export class AppComponent {
   opened = true;
-  @ViewChild('sidenav',{static:true}) sidenav: MatSidenav;
+  @ViewChild('sidenav', {static:true}) sidenav: MatSidenav;
 
   constructor(public authService: AuthService) { }
   

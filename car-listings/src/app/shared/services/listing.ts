@@ -1,8 +1,9 @@
 export interface Listing {
   $key: string;
+  creatorUID: string;
   image_url: string;
   title: string;
-  year: string;
+  year: Date;
   engine: string;
   transmission: string;
   place: string;
@@ -10,6 +11,6 @@ export interface Listing {
   mileage: number;
   cubature: number;
   category: string;
-  eurostandart: string;
+  eurostandart: number;
   color: string;
 }

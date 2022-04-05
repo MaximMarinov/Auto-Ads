@@ -1,0 +1,9 @@
+.card-wrapper {
+    display: flex;
+}
+
+.example-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

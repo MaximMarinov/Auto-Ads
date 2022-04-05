@@ -29,25 +29,23 @@
             You must provide a<strong>title</strong>
           </mat-error>
         </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Year" formControlName="year" />
+        
+        <mat-form-field>
+          <input
+            matInput
+            readonly
+            [matDatepicker]="picker"
+            placeholder="Manufacture Date"
+            formControlName="year"
+            (dateChange)="formatDate($event)"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
           <mat-error *ngIf="handleError('year', 'required')">
-            You must provide a<strong>year</strong>
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Engine" formControlName="engine" />
-          <mat-error *ngIf="handleError('engine', 'required')">
-            You must provide a<strong>engine</strong>
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Transmission" formControlName="transmission" />
-          <mat-error *ngIf="handleError('transmission', 'required')">
-            You must provide a<strong>transmission</strong>
+            Manufacture Date is required
           </mat-error>
         </mat-form-field>
 
@@ -78,28 +76,6 @@
             You must provide a<strong> cubature</strong>
           </mat-error>
         </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Category" formControlName="category" />
-          <mat-error *ngIf="handleError('category', 'required')">
-            You must provide a<strong> category</strong>
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Eurostandart" formControlName="eurostandart" />
-          <mat-error *ngIf="handleError('eurostandart', 'required')">
-            You must provide a<strong> eurostandart</strong>
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Color" formControlName="color" />
-          <mat-error *ngIf="handleError('color', 'required')">
-            You must provide a<strong> color</strong>
-          </mat-error>
-        </mat-form-field>
-
 
         <!-- ISBN -->
         <!-- <mat-form-field class="example-full-width">
@@ -157,22 +133,80 @@
     </mat-card>
 
     <!-- Right block -->
-    <!-- <mat-card> -->
-      <!-- <div class="controlers-wrapper"> -->
+    <mat-card>
+      <div class="controlers-wrapper">
         <!-- Listing binding -->
-        <!-- <mat-form-field>
-          <mat-label>Binding type</mat-label>
-          <mat-select formControlName="binding_type">
+        <mat-form-field>
+          <mat-label>Engine type</mat-label>
+          <mat-select formControlName="engine">
             <mat-option
-              [value]="bindingType"
-              *ngFor="let bindingType of BindingType"
-              >{{ bindingType }}</mat-option
+              [value]="engine"
+              *ngFor="let engine of Engine"
+              >{{ engine }}</mat-option
             >
           </mat-select>
-          <mat-error *ngIf="handleError('binding_type', 'required')">
-            Binding type is required
+          <mat-error *ngIf="handleError('engine', 'required')">
+            Engine type is required
           </mat-error>
-        </mat-form-field> -->
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Transmission type</mat-label>
+          <mat-select formControlName="transmission">
+            <mat-option
+              [value]="transmission"
+              *ngFor="let transmission of Transmission"
+              >{{ transmission }}</mat-option
+            >
+          </mat-select>
+          <mat-error *ngIf="handleError('transmission', 'required')">
+            Transmission type is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Category</mat-label>
+          <mat-select formControlName="category">
+            <mat-option
+              [value]="category"
+              *ngFor="let category of Category"
+              >{{ category }}</mat-option
+            >
+          </mat-select>
+          <mat-error *ngIf="handleError('category', 'required')">
+            Category is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Eurostandart</mat-label>
+          <mat-select formControlName="eurostandart">
+            <mat-option
+              [value]="eurostandart"
+              *ngFor="let eurostandart of Eurostandart"
+              >{{ eurostandart }}</mat-option
+            >
+          </mat-select>
+          <mat-error *ngIf="handleError('category', 'required')">
+            Category is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Color</mat-label>
+          <mat-select formControlName="color">
+            <mat-option
+              [value]="color"
+              *ngFor="let color of Color"
+              >{{ color }}</mat-option
+              
+            >
+          </mat-select>
+          <mat-error *ngIf="handleError('color', 'required')">
+            Color is required
+          </mat-error>
+        </mat-form-field>
+
 
         <!-- Listing stock -->
         <!-- <div class="misc-bottom-padding">
@@ -213,8 +247,8 @@
             info
           </i>
         </mat-form-field> -->
-      <!-- </div>
-    </mat-card> -->
+      </div>
+    </mat-card>
 
     <!-- Submit & Reset -->
     <mat-card>

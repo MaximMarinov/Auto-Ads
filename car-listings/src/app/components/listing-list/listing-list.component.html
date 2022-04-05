@@ -1,121 +1,34 @@
-<!-- Title group  -->
-<div class="title-group">
-  <h1 class="mat-h1">Listing List</h1>
-  <mat-divider fxFlex="1 0"></mat-divider>
-</div>
-
-<!-- No data message -->
-<p *ngIf="ListingData.length <= 0" class="no-data">There is no data added yet!</p>
-
-<!-- Listings list Angular material data table -->
-<div class="container" *ngIf="ListingData.length > 0">
-  <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource">
-      <ng-container matColumnDef="$key">
-        <th mat-header-cell *matHeaderCellDef>Listing ID</th>
-        <td mat-cell *matCellDef="let element">{{ element.$key }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="image_url">
-        <th mat-header-cell *matHeaderCellDef>Image Url</th>
-        <td mat-cell *matCellDef="let element">{{ element.image_url }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="title">
-        <th mat-header-cell *matHeaderCellDef>Title</th>
-        <td mat-cell *matCellDef="let element">{{ element.title }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="year">
-        <th mat-header-cell *matHeaderCellDef>Year</th>
-        <td mat-cell *matCellDef="let element">{{ element.year }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="engine">
-        <th mat-header-cell *matHeaderCellDef>Engine</th>
-        <td mat-cell *matCellDef="let element">{{ element.engine }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="transmission">
-        <th mat-header-cell *matHeaderCellDef>Transmission</th>
-        <td mat-cell *matCellDef="let element">{{ element.transmission }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="place">
-        <th mat-header-cell *matHeaderCellDef>Place</th>
-        <td mat-cell *matCellDef="let element">{{ element.place }}</td>
-      </ng-container>
-      
-      <ng-container matColumnDef="horse_power">
-        <th mat-header-cell *matHeaderCellDef>Horse Power</th>
-        <td mat-cell *matCellDef="let element">{{ element.horse_power }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="mileage">
-        <th mat-header-cell *matHeaderCellDef>Mileage</th>
-        <td mat-cell *matCellDef="let element">{{ element.mileage }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="cubature">
-        <th mat-header-cell *matHeaderCellDef>Cubature</th>
-        <td mat-cell *matCellDef="let element">{{ element.cubature }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="category">
-        <th mat-header-cell *matHeaderCellDef>Category</th>
-        <td mat-cell *matCellDef="let element">{{ element.category }}</td>
-      </ng-container>
-      
-      <ng-container matColumnDef="eurostandart">
-        <th mat-header-cell *matHeaderCellDef>Eurostandart</th>
-        <td mat-cell *matCellDef="let element">{{ element.eurostandart }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="color">
-        <th mat-header-cell *matHeaderCellDef>Color</th>
-        <td mat-cell *matCellDef="let element">{{ element.color }}</td>
-      </ng-container>
-
-      <!-- <ng-container matColumnDef="publication_date">
-        <th mat-header-cell *matHeaderCellDef>Publication Date</th>
-        <td mat-cell *matCellDef="let element">
-          {{ element.publication_date }}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="in_stock">
-        <th mat-header-cell *matHeaderCellDef>In Stock</th>
-        <td mat-cell *matCellDef="let element">{{ element.in_stock }}</td>
-      </ng-container> --> -->
-
-      <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef>Action</th>
-        <td mat-cell *matCellDef="let element; let i = index">
-          <button
-            mat-raised-button
-            color="primary"
-            class="push-right"
-            [routerLink]="['/edit-listing/', element.$key]"
-          >
-            Edit
-          </button>
-          <button
-            mat-raised-button
-            color="accent"
-            (click)="deleteListing(i, element)"
-          >
-            Delete
-          </button>
-        </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
-
-    <mat-paginator
-      [pageSizeOptions]="[5, 10, 20]"
-      showFirstLastButtons
-    ></mat-paginator>
-  </div>
-</div>
+<mat-grid-list cols="3" [rowHeight]="400" class="card-wrapper">
+  <mat-grid-tile *ngFor="let item of ListingData">
+    <mat-card class="example-card">
+      <img mat-card-image style="width: 150px;" 
+        *ngIf="item.image_url"
+        src="{{item.image_url}}" 
+        alt="thumbnail" 
+        class="listing-thumbnail">
+      <p *ngIf="!item.image_url">No Image</p>
+      <mat-card-title>
+        <h1>{{item.title}}</h1>
+      </mat-card-title>
+      <mat-card-content>
+        
+      </mat-card-content>
+        <ul>
+          <li>Manifacture Date: {{item.year}}</li>
+          <li>Color: {{item.color}}</li>
+          <li>Category: {{item.category}}</li>
+          <li>Cubature: {{item.cubature}}</li>
+          <li>Engine: {{item.engine}}</li>
+          <li>Eurostandart: {{item.eurostandart}}</li>
+          <li>Horse Power: {{item.horse_power}}</li>
+          <li>Mileage: {{item.mileage}}</li>
+          <li>Place: {{item.place}}</li>
+          <li>Transmission: {{item.transmission}}</li>
+        </ul>
+      <mat-card-actions>
+        <button *ngIf="isCreator()" mat-raised-button color="accent" [routerLink]="['/edit-listing/', item.$key]">Edit</button>
+        <button mat-raised-button color="primary">SHARE</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

@@ -18,21 +18,50 @@ export class AddListingComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true;
-  languageArray: Language[] = [];
+  // languageArray: Language[] = [];
   @ViewChild('chipList') chipList;
   @ViewChild('resetListingForm') myNgForm;
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  selectedBindingType: string;
 
   listingForm: FormGroup;
 
-  BindingType: any = [
-    'Paperback',
-    'Case binding',
-    'Perfect binding',
-    'Saddle stitch binding',
-    'Spiral binding',
+  Engine: any = [
+    'Petrol',
+    'Diesel',
+    'Gas',
   ];
+
+  Transmission: any = [
+    'Manual',
+    'Automatic',
+    'Semi-Automatic',
+  ];
+
+  Category: any = [
+    'Hatchback',
+    'Sedan',
+    'SUV',
+    'MUV',
+    'Crossover',
+    'Coupe',
+    'Convertible',
+  ];
+
+  Eurostandart: any = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+  ];
+
+  Color: any = [
+    'Black',
+    'Red',
+    'Grey',
+    'White'
+  ]
+
+  startDate = new Date(1990, 0, 1);
 
   ngOnInit() {
     this.listingApi.GetListingList();
@@ -88,16 +117,16 @@ export class AddListingComponent implements OnInit {
   // }
 
   /* Date */
-  // formatDate(e) {
-  //   var convertDate = new Date(e.target.value).toISOString().substring(0, 10);
-  //   this.listingForm.get('publication_date').setValue(convertDate, {
-  //     onlyself: true,
-  //   });
-  // }
+  formatDate(e) {
+    var convertDate = new Date(e.target.value).toISOString().substring(0, 10);
+    this.listingForm.get('year').setValue(convertDate, {
+      onlyself: true,
+    });
+  }
 
   /* Reset form */
   resetForm() {
-    this.languageArray = [];
+    // this.languageArray = [];
     this.listingForm.reset();
     Object.keys(this.listingForm.controls).forEach((key) => {
       this.listingForm.controls[key].setErrors(null);

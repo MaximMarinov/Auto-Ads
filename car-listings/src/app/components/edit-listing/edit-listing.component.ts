@@ -33,6 +33,43 @@ export class EditListingComponent implements OnInit {
   //   'Spiral binding',
   // ];
 
+  Engine: any = [
+    'Petrol',
+    'Diesel',
+    'Gas',
+  ];
+
+  Transmission: any = [
+    'Manual',
+    'Automatic',
+    'Semi-Automatic',
+  ];
+
+  Category: any = [
+    'Hatchback',
+    'Sedan',
+    'SUV',
+    'MUV',
+    'Crossover',
+    'Coupe',
+    'Convertible',
+  ];
+
+  Eurostandart: any = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+  ];
+
+  Color: any = [
+    'Black',
+    'Red',
+    'Grey',
+    'White'
+  ]
+
   ngOnInit() {
     this.updateListingForm();
   }
@@ -100,12 +137,12 @@ export class EditListingComponent implements OnInit {
   };
 
   /* Date */
-  // formatDate(e) {
-  //   var convertDate = new Date(e.target.value).toISOString().substring(0, 10);
-  //   this.editListingForm.get('publication_date').setValue(convertDate, {
-  //     onlyself: true,
-  //   });
-  // }
+  formatDate(e) {
+    var convertDate = new Date(e.target.value).toISOString().substring(0, 10);
+    this.editListingForm.get('year').setValue(convertDate, {
+      onlyself: true,
+    });
+  }
 
   /* Go to previous page */
   goBack() {

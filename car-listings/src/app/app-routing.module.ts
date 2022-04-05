@@ -6,15 +6,14 @@ import { EditListingComponent } from './components/edit-listing/edit-listing.com
 import { ListingListComponent } from './components/listing-list/listing-list.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
-
-import { SecureInnerPages } from './shared/guard/auth.guard';
+import { SecureFullContent, SecureInnerPages } from './shared/guard/auth.guard';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'add-listing' },
+  { path: '', pathMatch: 'full', redirectTo: 'listings-list' },
   { path: 'sign-in', component: SignInComponent, canActivate: [SecureInnerPages] },
   { path: 'sign-up', component: SignUpComponent, canActivate: [SecureInnerPages] },
-  { path: 'add-listing', component: AddListingComponent },
-  { path: 'edit-listing/:id', component: EditListingComponent },
+  { path: 'add-listing', component: AddListingComponent, canActivate:[SecureFullContent] },
+  { path: 'edit-listing/:id', component: EditListingComponent, canActivate:[SecureFullContent] },
   { path: 'listings-list', component: ListingListComponent },
 ];
 

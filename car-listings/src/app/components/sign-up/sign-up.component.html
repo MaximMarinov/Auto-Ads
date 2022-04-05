@@ -1,68 +1,29 @@
-<div class="displayTable">
-  <div class="displayTableCell">
-    <div class="authBlock">
-      <h3>Sign Up</h3>
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Sign Up</mat-card-title>
+    </mat-card-header>
 
-      <div class="formGroup">
-        <input
-          type="email"
-          class="formControl"
-          placeholder="Email Address"
-          #userEmail
-          required
-        />
-      </div>
+    <form class="example-form">
 
-      <div class="formGroup">
-        <input
-          type="password"
-          class="formControl"
-          placeholder="Password"
-          #userPwd
-          required
-        />
-      </div>
+      <mat-card-content>
 
-      <div class="formGroup">
-        <input
-          type="button"
-          class="btn btnPrimary"
-          value="Sign Up"
-          (click)="authService.SignUp(userEmail.value, userPwd.value)"
-        />
-      </div>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Email" #email>
+        </mat-form-field>
 
-      <div class="formGroup">
-          <input
-            type="button"
-            class="btn btnPrimary"
-            value="Sign In Anonymously"
-            (click)="authService.SignInAnonymously()"
-          />
-        </div>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Password" #password>
+        </mat-form-field>
 
-      <div class="formGroup">
-        <span class="or"><span class="orInner">Or</span></span>
-      </div>
+      </mat-card-content>
 
-      <!-- Continue with Google -->
-      <div class="formGroup">
-        <button
-          type="button"
-          class="btn googleBtn"
-          (click)="authService.GoogleAuth()"
-        >
-          <i class="fab fa-google-plus-g"></i>
-          Continue with Google
-        </button>
-      </div>
-    </div>
+      <button mat-stroked-button color="accent" class="btn-block" (click)="authService.SignUp(email.value, password.value)">Sign Up</button>
 
-    <div class="redirectToLogin">
-      <span
-        >Already have an account?
-        <span class="redirect" routerLink="/sign-in">Log In</span></span
-      >
-    </div>
-  </div>
+      <button mat-stroked-button color="accent" class="btn-block" (click)="authService.SignInAnonymously()">Sign Up Anonymously</button>
+
+      <button mat-stroked-button color="accent" class="btn-block" (click)="authService.GoogleAuth()">Sign Up With Google</button>
+
+    </form>
+  </mat-card>
 </div>
