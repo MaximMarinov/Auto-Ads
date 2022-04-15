@@ -1,10 +1,10 @@
-const { model, Schema } = require('mongoose');
-
+const { model, Schema, Types: { ObjectId }  } = require('mongoose');
 
 const userSchema = new Schema({
     fullName: { type: String, required: true },
     email: { type: String, required: [true, 'Email is required'] },
     hashedPassword: { type: String, required: true },
+    ads: { type: [ObjectId], ref: 'Ad', default: [] }
 });
 
 

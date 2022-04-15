@@ -22,6 +22,6 @@ const schema = new Schema({
     owner: { type: ObjectId, ref: 'User' }
 });
 
-const Item = model('Item', schema);
+const Ad = model('Ad', schema);
 
-module.exports = Item;
+module.exports = Ad;
