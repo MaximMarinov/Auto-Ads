@@ -4,6 +4,7 @@ import { HeaderComponent } from './header/header.component';
 import { AngularMaterialModule } from '../material.module';
 import { AdService } from './services/ad.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from '../app-routing.module';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     AngularMaterialModule,
     HttpClientModule,
+    AppRoutingModule
   ],
   exports: [
     HeaderComponent

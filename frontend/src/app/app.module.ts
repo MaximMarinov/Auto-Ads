@@ -16,6 +16,7 @@ import { AdsModule } from './feature/ads/ads.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    AngularMaterialModule,
     CoreModule,
     AdsModule
   ],
