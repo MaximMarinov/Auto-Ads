@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IAd } from 'src/app/core/models/ad';
+import { IAd } from 'src/app/shared/interfaces/ad';
 import { AdService } from 'src/app/core/services/ad.service';
 
 @Component({
@@ -11,13 +11,15 @@ export class AdListComponent implements OnInit {
 
   adList!: IAd[];
 
-  constructor(private adService: AdService) { }
+  constructor(public adService: AdService) { }
 
   ngOnInit(): void {
     this.adService.getAllAds().subscribe(adList => {
       this.adList = adList
     });
   }
+
+  
 
   gridColumns = 4;
 

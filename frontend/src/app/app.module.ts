@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './material.module';
 import { CoreModule } from './core/core.module';
 import { AdsModule } from './feature/ads/ads.module';
+import { AuthModule } from './auth/auth.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -17,8 +19,11 @@ import { AdsModule } from './feature/ads/ads.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
+    CoreModule.forRoot(),
     CoreModule,
-    AdsModule
+    AdsModule,
+    AuthModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent],

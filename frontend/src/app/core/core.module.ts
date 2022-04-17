@@ -1,10 +1,11 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { AngularMaterialModule } from '../material.module';
 import { AdService } from './services/ad.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from '../app-routing.module';
+import { storageServiceProvider } from './services/storage.service';
 
 
 @NgModule({
@@ -19,9 +20,16 @@ import { AppRoutingModule } from '../app-routing.module';
   ],
   exports: [
     HeaderComponent
-  ],
-  providers: [
-    AdService
   ]
 })
-export class CoreModule { }
+export class CoreModule {
+  static forRoot(): ModuleWithProviders<CoreModule>  {
+    return {
+      ngModule: CoreModule,
+      providers: [
+        AdService,
+        storageServiceProvider,
+      ]
+    }
+  }
+}
