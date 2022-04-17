@@ -4,7 +4,7 @@
         <mat-card class="mat-elevation-z4">
         <img mat-card-image src="{{ad.img}}">
           <mat-card-header>
-            <mat-card-title [routerLink]="['ads', ad._id]">{{ad.title}}</mat-card-title>
+            <mat-card-title routerLink="{{ad._id}}">{{ad.title}}</mat-card-title>
           </mat-card-header>
           
           <mat-card-content>

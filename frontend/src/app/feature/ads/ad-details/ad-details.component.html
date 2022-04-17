@@ -15,9 +15,11 @@
             <li>Price: {{ad?.price}}</li>
         </ul>
     </mat-card-content>
-    <mat-card-actions>
-        <button mat-button>EDIT</button>
-        <button mat-button>DELETE</button>
-    </mat-card-actions>
+    <ng-container *ngIf="isLogged">
+        <mat-card-actions>
+            <button mat-button>EDIT</button>
+            <button mat-button>DELETE</button>
+        </mat-card-actions>
+    </ng-container>
 </mat-card>
 

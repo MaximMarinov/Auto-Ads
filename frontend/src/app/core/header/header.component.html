@@ -4,18 +4,25 @@
     </span>
     <span class="spacer"></span>
     <ul>
-      <li>
-        <a mat-button routerLink="/create" routerLinkActive="mat-accent">New Ad</a>
-      </li>
-      <li>
-        <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
-      </li>
-      <li>
-        <a mat-button routerLink="/register" routerLinkActive="mat-accent">Register</a>
-      </li>
-      <li>
-        <button mat-button>Logout</button>
-      </li>
+
+      <ng-container *ngIf="authService.isLogged">
+        <li>
+          <a mat-button routerLink="/ads/create" routerLinkActive="mat-accent">New Ad</a>
+        </li>
+        <li>
+          <button mat-button (click)="authService.logout()">Logout</button>
+        </li>
+      </ng-container>
+      
+      <ng-container *ngIf="!authService.isLogged">
+        <li>
+          <a mat-button routerLink="/login" routerLinkActive="mat-accent" (click)="authService.login()">Login</a>
+        </li>
+        <li>
+          <a mat-button routerLink="/register" routerLinkActive="mat-accent">Register</a>
+        </li>
+      </ng-container>
+    
     </ul>
 </mat-toolbar>
   

@@ -9,6 +9,7 @@ import { CoreModule } from './core/core.module';
 import { AdsModule } from './feature/ads/ads.module';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
+import { PagesModule } from './feature/pages/pages.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SharedModule } from './shared/shared.module';
     CoreModule,
     AdsModule,
     AuthModule,
-    SharedModule
+    SharedModule,
+    PagesModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

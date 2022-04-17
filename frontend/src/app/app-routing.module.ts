@@ -1,14 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdListComponent } from './feature/ads/ad-list/ad-list.component';
-import { CreateAdComponent } from './feature/ads/create-ad/create-ad.component';
-import { EditAdComponent } from './feature/ads/edit-ad/edit-ad.component';
-import { HomeComponent } from './shared/home/home.component';
+import { HomeComponent } from './feature/pages/home/home.component';
+import { NotFoundComponent } from './feature/pages/not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'create', component: CreateAdComponent },
-  { path: 'edit/:id', component: EditAdComponent },
+  // { path: '**', component: NotFoundComponent }, 
 ];
 
 @NgModule({
