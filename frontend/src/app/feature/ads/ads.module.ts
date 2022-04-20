@@ -7,6 +7,7 @@ import { AdService } from 'src/app/core/services/ad.service';
 import { AngularMaterialModule } from 'src/app/material.module';
 import { AdDetailsComponent } from './ad-details/ad-details.component';
 import { AdsRoutingModule } from './ads-routing.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AdsRoutingModule } from './ads-routing.module';
   imports: [
     CommonModule,
     AngularMaterialModule,
-    AdsRoutingModule
+    AdsRoutingModule,
+    FormsModule
   ],
   exports: [
     AdListComponent,

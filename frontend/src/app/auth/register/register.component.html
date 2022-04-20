@@ -1,0 +1,58 @@
+<mat-card>
+    <form [formGroup]="registerFormGroup" (ngSubmit)="handleRegister()">
+
+        <mat-form-field appearance="fill">
+            <mat-label>Full Name</mat-label>
+            <input formControlName="fullName" type="text" matInput>
+            <mat-error *ngIf="registerFormGroup.controls['fullName'].errors?.required" >
+                Full Name is required!
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input formControlName="email" type="email" matInput>
+            <mat-error *ngIf="registerFormGroup.controls['email'].errors?.required" >
+                Email is required!
+            </mat-error>
+            <mat-error *ngIf="registerFormGroup.controls['email'].errors?.email && !registerFormGroup.controls['email'].errors?.required" >
+                Email is invalid!
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Phone Number</mat-label>
+            <input formControlName="phone" type="tel" matInput>
+            <mat-error *ngIf="registerFormGroup.controls['phone'].errors?.required" >
+                Phone number is required!
+            </mat-error>
+            <mat-error *ngIf="registerFormGroup.controls['phone'].errors?.minlength" >
+                Phone number must be atleast 10 digits long!
+            </mat-error>
+        </mat-form-field>
+        
+        <div formGroupName="passwords">
+            <mat-form-field appearance="fill">
+                <mat-label>Password</mat-label>
+                <input formControlName="password" type="password" matInput>
+                <mat-error *ngIf="passwordsGroup.controls['password'].errors?.required" >
+                    Password is required!
+                </mat-error>
+                <mat-error *ngIf="passwordsGroup.controls['password'].errors?.minlength" >
+                    Password must be atleast 5 characters!
+                </mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="fill">
+                <mat-label>Repeat Password</mat-label>
+                <input formControlName="rePass" type="password" matInput>
+                <mat-error *ngIf="passwordsGroup.controls['rePass'].touched && passwordsGroup.controls['rePass'].invalid" >
+                    Passwords doesn't match!
+                </mat-error>
+            </mat-form-field>
+        </div>
+        
+        <button mat-raised-button color="accent" [disabled]="registerFormGroup.invalid">Register</button>
+
+    </form>
+</mat-card>

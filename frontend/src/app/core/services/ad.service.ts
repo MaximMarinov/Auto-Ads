@@ -13,11 +13,33 @@ export class AdService {
 
   constructor(private http: HttpClient) {}
 
-  getAllAds(): Observable<IAd[]> {
+  getAllAds$(): Observable<IAd[]> {
     return this.http.get<IAd[]>(`${apiUrl}/ads`);
   }
 
   getAdById(id: string): Observable<IAd> {
     return this.http.get<IAd>(`${apiUrl}/ads/${id}`);
   }
+
+  createAd$(
+    body: {
+      title: string,
+      img: string,
+      year: number,
+      engine: string,
+      transmission: string,
+      place: string,
+      cubature: number,
+      mileage: number,
+      category: string,
+      eurostandard: number,
+      color: string,
+      description: string,
+      price: number
+    }): Observable<IAd> {
+
+    return this.http.post<IAd>(`${apiUrl}/ads`, body, {withCredentials: true})
+  }
 }
+
+    

@@ -14,12 +14,11 @@ export class AdListComponent implements OnInit {
   constructor(public adService: AdService) { }
 
   ngOnInit(): void {
-    this.adService.getAllAds().subscribe(adList => {
+    this.adService.getAllAds$().subscribe(adList => {
       this.adList = adList
     });
   }
 
-  
 
   gridColumns = 4;
 

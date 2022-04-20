@@ -1,13 +1,18 @@
 const { model, Schema, Types: { ObjectId } } = require('mongoose');
 
+const IMG_PATTERN = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/;
+
 const schema = new Schema({
     title: { type: String, required: true },
-    img: { type: String, required: true },
+    img: { type: String, required: true, validate: {
+        validator(value) {
+            return IMG_PATTERN.test(value);
+        },
+        message: 'The image url must be in a "https://example.png / jpg / gif" format!'
+    }},
     year: {
         type: Number,
         required: true,
-        min: [1950, 'Year must be between 1950 and 2022'],
-        max: [2022, 'Year must be between 1950 and 2022']
     },
     engine: { type: String, required : true },
     transmission: { type: String, required : true },

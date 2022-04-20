@@ -27,6 +27,7 @@ async function update(id, item) {
     existing.place = item.place;
     existing.cubature = item.cubature;
     existing.mileage = item.mileage;
+    existing.category = item.category;
     existing.eurostandard = item.eurostandard;
     existing.color = item.color;
     existing.description = item.description;

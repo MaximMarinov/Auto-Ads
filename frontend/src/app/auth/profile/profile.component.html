@@ -1,1 +1,63 @@
-<p>profile works!</p>
+<ng-container *ngIf="currentUser">
+    <mat-card>
+        <ng-container *ngIf="!isInEditMode">
+            <mat-card-title>{{currentUser.fullName}}</mat-card-title>
+            <mat-card-content>
+                <ul>
+                    <li>
+                        {{currentUser.email}}
+                    </li>
+                    
+                    <li>
+                        {{currentUser.phone}}
+                    </li>
+                </ul>
+            </mat-card-content>
+        </ng-container>
+        
+        <ng-container *ngIf="isInEditMode">
+            <form #editProfileForm="ngForm" (ngSubmit)="updateProfile()">
+                <mat-form-field appearance="fill">
+                    <mat-label>Full Name</mat-label>
+                    <input #fullName="ngModel" type="text" matInput name="fullName" ngModel required>
+                    <mat-error *ngIf="fullName.errors?.required" >
+                        Full Name is required!
+                    </mat-error>
+                </mat-form-field>
+        
+                <mat-form-field appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input #email="ngModel" type="email" matInput name="email" ngModel required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                    <mat-error *ngIf="email.errors?.required" >
+                        Email is required!
+                    </mat-error>
+                    <mat-error *ngIf="email.errors?.pattern" >
+                        Email is invalid!
+                    </mat-error>
+                </mat-form-field>
+        
+                <mat-form-field appearance="fill">
+                    <mat-label>Phone Number</mat-label>
+                    <input #phone="ngModel" type="tel" matInput name="phone" ngModel required minlength="10">
+                    <mat-error *ngIf="phone.errors?.required" >
+                        Phone number is required!
+                    </mat-error>
+                    <mat-error *ngIf="phone.errors?.minlength" >
+                        Phone number must be atleast 10 digits long!
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-card-actions>
+                    <button type="button" mat-raised-button color="accent" (click)="isInEditMode = false">Cancel</button>
+                    <button mat-raised-button color="primary" [disabled]="editProfileForm.invalid">Submit</button>
+                </mat-card-actions>
+            </form>
+            
+        </ng-container>
+    
+        <mat-card-actions *ngIf="!isInEditMode">
+            <button mat-raised-button color="accent" (click)="enterEditMode()">Edit</button>
+        </mat-card-actions>
+        
+    </mat-card>    
+</ng-container>

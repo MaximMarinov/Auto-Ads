@@ -1,7 +1,6 @@
 import { IUser } from "./user";
 
 export interface IAd {
-    _id: string;
     title: string;
     img: string;
     year: number;
@@ -10,6 +9,7 @@ export interface IAd {
     place: string;
     cubature: number;
     mileage: number;
+    category: string;
     eurostandard: number;
     color: string;
     description: string;

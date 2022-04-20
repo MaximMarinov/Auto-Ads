@@ -6,6 +6,7 @@ import { AdService } from './services/ad.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from '../app-routing.module';
 import { storageServiceProvider } from './services/storage.service';
+import { AuthService } from './services/auth.service';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { storageServiceProvider } from './services/storage.service';
   ],
   exports: [
     HeaderComponent
-  ]
+  ],
+  providers: [AuthService]
 })
 export class CoreModule {
   static forRoot(): ModuleWithProviders<CoreModule>  {

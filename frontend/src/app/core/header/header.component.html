@@ -5,18 +5,21 @@
     <span class="spacer"></span>
     <ul>
 
-      <ng-container *ngIf="authService.isLogged">
+      <ng-container *ngIf="isLogged">
         <li>
           <a mat-button routerLink="/ads/create" routerLinkActive="mat-accent">New Ad</a>
         </li>
         <li>
-          <button mat-button (click)="authService.logout()">Logout</button>
+          <a mat-button routerLink="/profile" routerLinkActive="mat-accent">{{currentUser?.fullName}}'s Profile</a>
+        </li>
+        <li>
+          <button mat-button (click)="handleLogout()">Logout</button>
         </li>
       </ng-container>
       
-      <ng-container *ngIf="!authService.isLogged">
+      <ng-container *ngIf="!isLogged">
         <li>
-          <a mat-button routerLink="/login" routerLinkActive="mat-accent" (click)="authService.login()">Login</a>
+          <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
         </li>
         <li>
           <a mat-button routerLink="/register" routerLinkActive="mat-accent">Register</a>
