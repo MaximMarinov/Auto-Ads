@@ -1,7 +1,7 @@
 const { verifySession } = require('../services/users');
 
 module.exports = () => (req, res, next) => {
-    const token = req.headers['x-authorization'];
+    const token = req.cookies['authcookie'];
 
     try {
         if (token) {

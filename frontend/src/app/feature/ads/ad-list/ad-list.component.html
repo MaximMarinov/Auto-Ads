@@ -1,18 +1,29 @@
 <div class="content">
     <div fxLayout="row wrap" fxLayoutGap="16px grid">
       <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let ad of adList">
-        <mat-card class="mat-elevation-z4">
-        <img mat-card-image src="{{ad.img}}">
-          <mat-card-header>
-            <mat-card-title routerLink="{{ad._id}}">{{ad.title}}</mat-card-title>
-          </mat-card-header>
-          
-          <mat-card-content>
-            <p>
-              {{ad.description}}
-            </p>
-          </mat-card-content>
-        </mat-card>
+        <ng-container *ngIf="!!ad">
+          <mat-card class="mat-elevation-z4">
+            <img mat-card-image src="{{ad.img}}">
+              <mat-card-header>
+                <mat-card-title routerLink="{{ad._id}}">{{ad.title}}</mat-card-title>
+              </mat-card-header>
+              
+              <mat-card-content>
+                <p>
+                  {{ad.description}}
+                </p>
+              </mat-card-content>
+            </mat-card>
+        </ng-container>
+
+        <ng-container *ngIf="adList.length == 0">
+          <mat-card>
+            <mat-card-title>
+              No Ads!
+            </mat-card-title>
+          </mat-card>
+        </ng-container>
+        
       </div>
     </div>
-  </div>
+</div>

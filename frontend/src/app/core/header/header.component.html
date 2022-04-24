@@ -5,19 +5,19 @@
     <span class="spacer"></span>
     <ul>
 
-      <ng-container *ngIf="isLogged">
+      <ng-container *ngIf="(isLoggedIn$ | async)">
         <li>
           <a mat-button routerLink="/ads/create" routerLinkActive="mat-accent">New Ad</a>
         </li>
         <li>
-          <a mat-button routerLink="/profile" routerLinkActive="mat-accent">{{currentUser?.fullName}}'s Profile</a>
+          <a mat-button routerLink="/profile" routerLinkActive="mat-accent">{{(currentUser$ | async).fullName }}'s Profile</a>
         </li>
         <li>
           <button mat-button (click)="handleLogout()">Logout</button>
         </li>
       </ng-container>
       
-      <ng-container *ngIf="!isLogged">
+      <ng-container *ngIf="!(isLoggedIn$ | async)">
         <li>
           <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
         </li>
@@ -25,7 +25,6 @@
           <a mat-button routerLink="/register" routerLinkActive="mat-accent">Register</a>
         </li>
       </ng-container>
-    
     </ul>
 </mat-toolbar>
   

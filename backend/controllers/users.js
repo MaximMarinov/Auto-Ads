@@ -19,7 +19,7 @@ router.post('/register', isGuest(), async (req, res) => {
             req.body.phone.trim().toLowerCase(),
             req.body.password.trim()
         );
-        res.status(201).json(result);
+        res.cookie('authcookie', result.accessToken, {httpOnly:true}).status(201).json(result);
         
     } catch (err) {
         console.error(err.message);
@@ -31,7 +31,7 @@ router.post('/register', isGuest(), async (req, res) => {
 router.post('/login', isGuest(), async (req, res) => {
     try {
         const result = await login(req.body.email.trim().toLowerCase(), req.body.password.trim());
-        res.json(result);
+        res.cookie('authcookie', result.accessToken, {httpOnly:true}).json(result);
     } catch (err) {
         console.error(err.message);
         const error = mapErrors(err);
@@ -44,7 +44,7 @@ router.put('/profile', isAuth(), editProfileInfo);
 
 router.get('/logout', (req, res) => {
     logout(req.user?.token);
-    res.status(204).end();
+    res.clearCookie('authcookie').status(204).end();
 });
 
 module.exports = router;

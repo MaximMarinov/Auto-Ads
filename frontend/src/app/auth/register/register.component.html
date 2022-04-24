@@ -1,6 +1,8 @@
 <mat-card>
     <form [formGroup]="registerFormGroup" (ngSubmit)="handleRegister()">
 
+        <mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error>
+
         <mat-form-field appearance="fill">
             <mat-label>Full Name</mat-label>
             <input formControlName="fullName" type="text" matInput>

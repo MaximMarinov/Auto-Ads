@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,6 +10,8 @@ import { AdsModule } from './feature/ads/ads.module';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
 import { PagesModule } from './feature/pages/pages.module';
+import { AuthService } from './auth.service';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -26,8 +28,18 @@ import { PagesModule } from './feature/pages/pages.module';
     AuthModule,
     SharedModule,
     PagesModule,
+    RouterModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (authService: AuthService) => {
+        return () => authService.authenticate();
+      },
+      deps:[AuthService],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

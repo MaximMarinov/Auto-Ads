@@ -42,11 +42,15 @@ async function deleteById(id) {
     await Item.findByIdAndDelete(id);
 }
 
+async function getAdsByUser(userId) {
+    return Item.find({owner: userId});
+}
 
 module.exports = {
     getAll,
     create,
     getById,
     update,
-    deleteById
+    deleteById,
+    getAdsByUser
 };

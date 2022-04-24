@@ -84,4 +84,9 @@ router.delete('/:id', preload(), isOwner(), async (req, res) => {
     }
 });
 
+router.get('/my-ads', preload(), isOwner(), async (req, res) => {
+    const data = await api.getAdsByUser(req.body._id);
+    res.json(data);
+});
+
 module.exports = router;

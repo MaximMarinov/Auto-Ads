@@ -1,6 +1,7 @@
 import { IUser } from "./user";
 
 export interface IAd {
+    _id: string;
     title: string;
     img: string;
     year: number;
@@ -14,7 +15,7 @@ export interface IAd {
     color: string;
     description: string;
     price: number; 
-    creator: IUser;       
+    owner: IUser;       
 }
 
 export interface APIResponse<T> {

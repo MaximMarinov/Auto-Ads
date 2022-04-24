@@ -1,29 +1,53 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/auth.service';
 import { IUser } from 'src/app/shared/interfaces/user';
-import { AuthService } from '../services/auth.service';
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
-  get isLogged(): boolean {
-    return this.authService.isLogged;
-  }
+  currentUser$: Observable<IUser> = this.authService.currentUser$;
+  isLoggedIn$: Observable<boolean> = this.authService.isLoggedIn$;
 
-  get currentUser(): IUser {
-    return this.authService.currentUser;
-  }
+  private isLoggingOut: boolean = false;
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    ) { }
 
   ngOnInit(): void {
+    // this.isLoggedIn$
+  }
+
+  ngOnDestroy(): void {
   }
 
   handleLogout() {
-    this.authService.logout$()
+
+    if(this.isLoggingOut) {
+      return;
+    }
+
+    this.isLoggingOut = true;
+
+    this.authService.logout$().subscribe({
+      next: args => {
+        console.log(args)
+      },  
+      complete: () => {
+        this.isLoggingOut = false;
+        this.router.navigate(['/'])
+      },
+      error: () => {
+        this.isLoggingOut = true;
+      }
+    });
   }
 
 }

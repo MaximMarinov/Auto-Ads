@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { AngularMaterialModule } from '../material.module';
 import { AdService } from './services/ad.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from '../app-routing.module';
 import { storageServiceProvider } from './services/storage.service';
-import { AuthService } from './services/auth.service';
-
+import { UserService } from './services/user.service';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { RouterModule } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @NgModule({
   declarations: [
@@ -17,12 +19,12 @@ import { AuthService } from './services/auth.service';
     CommonModule,
     AngularMaterialModule,
     HttpClientModule,
-    AppRoutingModule
+    RouterModule
   ],
   exports: [
     HeaderComponent
   ],
-  providers: [AuthService]
+  providers: [UserService]
 })
 export class CoreModule {
   static forRoot(): ModuleWithProviders<CoreModule>  {
@@ -31,6 +33,13 @@ export class CoreModule {
       providers: [
         AdService,
         storageServiceProvider,
+        UserService,
+        AuthService,
+        {
+          provide: HTTP_INTERCEPTORS,
+          multi: true,
+          useClass: AuthInterceptor
+        },
       ]
     }
   }

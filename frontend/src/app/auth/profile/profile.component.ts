@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/core/services/auth.service';
+import { AuthService } from 'src/app/auth.service';
+import { UserService } from 'src/app/core/services/user.service';
+import { IAd } from 'src/app/shared/interfaces/ad';
 import { IUser } from 'src/app/shared/interfaces/user';
 
 @Component({
@@ -13,14 +15,16 @@ export class ProfileComponent implements OnInit {
 
   @ViewChild('editProfileForm') editProfileForm: NgForm;
 
-  currentUser: IUser;
+  currentUser = this.authService.currentUser;
 
   isInEditMode: boolean = false
 
-  constructor(private authService: AuthService, private router: Router) { }
+  adList: IAd[];
+
+  constructor(private userService: UserService, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.authService.getProfile$().subscribe({
+    this.userService.getProfile$().subscribe({
       next: (user) => {
         this.currentUser = user;
       },
@@ -41,9 +45,11 @@ export class ProfileComponent implements OnInit {
     })
   }
 
-  updateProfile() {
-    console.log(this.editProfileForm.value)
-
+  updateProfile(editProfileForm: NgForm) {
+    console.log(editProfileForm.value)
+    this.userService.editProfile$(editProfileForm.value).subscribe((user) => {
+      this.currentUser = user;
+    })
     this.isInEditMode = false
   }
 

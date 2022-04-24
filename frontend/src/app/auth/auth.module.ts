@@ -6,7 +6,10 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { AngularMaterialModule } from '../material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from '../core/services/auth.service';
+import { UserService } from '../core/services/user.service';
+import { AppRoutingModule } from '../app-routing.module';
+import { RouterModule } from '@angular/router';
+import { CoreModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -19,8 +22,10 @@ import { AuthService } from '../core/services/auth.service';
     AuthRoutingModule,
     AngularMaterialModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    RouterModule,
+    CoreModule
   ],
-  providers:[AuthService]
+  providers:[UserService]
 })
 export class AuthModule { }

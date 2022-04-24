@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService, CreateUserDto } from 'src/app/core/services/auth.service';
+import { AuthService } from 'src/app/auth.service';
+import { CreateUserDto } from 'src/app/core/services/user.service';
 import { emailValidator, passwordMatch } from '../util';
 
 @Component({
@@ -40,6 +41,8 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  errorMessage: string = '';
+
   handleRegister(): void {
 
     const body: CreateUserDto = {
@@ -49,8 +52,13 @@ export class RegisterComponent implements OnInit {
       password: this.registerFormGroup.value.passwords.password,
     }
 
-    this.authService.register$(body).subscribe(() => {
-      this.router.navigate(['/'])
+    this.authService.register$(body).subscribe({
+      next: () => {
+        this.router.navigate(['/']);
+      },
+      error: (err) => {
+        this.errorMessage = err.error.message;
+      }
     });
 
   }

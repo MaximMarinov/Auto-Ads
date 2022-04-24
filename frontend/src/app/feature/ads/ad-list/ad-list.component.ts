@@ -9,7 +9,8 @@ import { AdService } from 'src/app/core/services/ad.service';
 })
 export class AdListComponent implements OnInit {
 
-  adList!: IAd[];
+  adList: IAd[];
+
 
   constructor(public adService: AdService) { }
 
@@ -18,7 +19,6 @@ export class AdListComponent implements OnInit {
       this.adList = adList
     });
   }
-
 
   gridColumns = 4;
 
