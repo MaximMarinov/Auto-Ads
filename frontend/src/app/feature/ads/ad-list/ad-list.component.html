@@ -1,29 +1,36 @@
-<div class="content">
-    <div fxLayout="row wrap" fxLayoutGap="16px grid">
-      <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let ad of adList">
-        <ng-container *ngIf="!!ad">
-          <mat-card class="mat-elevation-z4">
-            <img mat-card-image src="{{ad.img}}">
-              <mat-card-header>
-                <mat-card-title routerLink="{{ad._id}}">{{ad.title}}</mat-card-title>
-              </mat-card-header>
-              
-              <mat-card-content>
-                <p>
-                  {{ad.description}}
-                </p>
-              </mat-card-content>
-            </mat-card>
-        </ng-container>
+<section class="section" id="trainers">
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-4"  *ngFor="let ad of adList">
+              <div class="trainer-item">
+                  <div class="image-thumb">
+                      <img src="assets/images/product-3-720x480.jpg" alt="{{ad.title}}">
+                  </div>
+                  <div class="down-content">
+                      <span>
+                          <sup>$</sup>{{ad.price}}
+                      </span>
 
-        <ng-container *ngIf="adList.length == 0">
-          <mat-card>
-            <mat-card-title>
-              No Ads!
-            </mat-card-title>
-          </mat-card>
-        </ng-container>
-        
+                      <h4>{{ad.title}}</h4>
+
+                      <p>
+                          <i class="fa fa-dashboard"></i> {{ad.mileage}}km &nbsp;&nbsp;&nbsp;
+                          <i class="fa fa-cube"></i> {{ad.cubature}} cc &nbsp;&nbsp;&nbsp;
+                          <i class="fa fa-cog"></i> {{ad.transmission}} &nbsp;&nbsp;&nbsp;
+                      </p>
+
+                      <ul class="social-icons">
+                          <li><a  routerLink="{{ad._id}}">+ View Car</a></li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
       </div>
-    </div>
-</div>
+
+      <br>
+<!-- 
+      <div class="main-button text-center">
+          <a href="cars.html">View Cars</a>
+      </div>
+  </div>
+</section> -->

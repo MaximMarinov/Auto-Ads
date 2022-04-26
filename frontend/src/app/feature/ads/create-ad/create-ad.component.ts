@@ -11,6 +11,38 @@ import { AdService } from 'src/app/core/services/ad.service';
 })
 export class CreateAdComponent implements OnInit {
 
+  engines: any[] = [
+    {name: 'Diesel'},
+    {name: 'Petrol'},
+    {name: 'Gas'},
+  ]
+
+  transmissions: any[] = [
+    {name: 'Manual'},
+    {name: 'Semi'},
+    {name: 'Automatic'},
+  ]
+
+  categories: any[] = [
+    {name: 'Sedan'},
+    {name: 'Coupe'},
+    {name: 'Hatchback'},
+    {name: 'Station Wagon'},
+    {name: 'Convertible'},
+    {name: 'SUV'},
+    {name: 'Minivan'},
+    {name: 'Pickup Truck'},
+  ]
+
+  eurostandards: any[] = [
+    {name: '1'},
+    {name: '2'},
+    {name: '3'},
+    {name: '4'},
+    {name: '5'},
+  ]
+
+  selectedItem: string;
 
   constructor (
       private adService: AdService, 
@@ -22,6 +54,8 @@ export class CreateAdComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  
 
   submitNewAd(newAdForm: NgForm): void {
     this.adService.createAd$(newAdForm.value).subscribe({

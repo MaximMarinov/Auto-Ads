@@ -1,4 +1,4 @@
-mat-toolbar {
+/* mat-toolbar {
     justify-content: space-between;
 }
 
@@ -9,3 +9,14 @@ mat-toolbar {
 .content > mat-card {
     margin-bottom: 16px;
 }
+
+mat-form-field {
+    width: 100%;
+  }
+  
+mat-card {
+      margin: auto;
+      max-width: 250px;
+      padding: 10px;
+      text-align: center;
+  } */

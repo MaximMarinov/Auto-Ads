@@ -21,6 +21,8 @@ import {MatCardModule} from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatExpansionModule} from '@angular/material/expansion';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -44,7 +46,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatCardModule,
     FlexLayoutModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatExpansionModule
   ],
   exports: [
     MatButtonModule,
@@ -66,7 +69,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatCardModule,
     FlexLayoutModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatExpansionModule
+    
   ],
   providers: [MatDatepickerModule],
 })

@@ -25,6 +25,7 @@ import { RouterModule } from '@angular/router';
     HomeComponent,
     NotFoundComponent
   ],
+  bootstrap:[HomeComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class PagesModule { }

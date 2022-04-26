@@ -28,7 +28,8 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css"
             ],
             "scripts": []
           },
@@ -96,9 +97,22 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/bootstrap.min.css",
+              "src/assets/css/font-awesome.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/accordions.js",
+              "src/assets/js/bootstrap.min.js",
+              "src/assets/js/custom.js",
+              "src/assets/js/imgfix.min.js",
+              "src/assets/js/jquery-2.1.0.min.js",
+              "src/assets/js/jquery.counterup.min.js",
+              "src/assets/js/mixitup.js",
+              "src/assets/js/popper.js",
+              "src/assets/js/scrollreveal.min.js",
+              "src/assets/js/waypoints.min.js"
+            ]
           }
         }
       }

@@ -3,6 +3,7 @@ const api = require('../services/ads');
 const { isAuth, isOwner } = require('../middlewares/guards');
 const mapErrors = require('../utils/mapper');
 const preload = require('../middlewares/preload');
+const User = require('../models/User');
 
 
 router.get('/', async (req, res) => {
@@ -84,9 +85,15 @@ router.delete('/:id', preload(), isOwner(), async (req, res) => {
     }
 });
 
-router.get('/my-ads', preload(), isOwner(), async (req, res) => {
-    const data = await api.getAdsByUser(req.body._id);
-    res.json(data);
+router.get('/my-ads', isOwner(), async (req, res) => {
+    try {
+      const userId = req.user.id; 
+      const result = await User.findById(userId).populate('ads');
+      res.send(result);
+    } catch (err) {
+      console.log(err);
+      res.status(500).send('Something went wrong, check logs');
+    }
 });
 
 module.exports = router;

@@ -1,121 +1,151 @@
 <mat-card>
+    <mat-card-title>
+        Add New Ad
+    </mat-card-title>
+
     <form #newAdForm="ngForm" (ngSubmit)="submitNewAd(newAdForm)">
 
         <!-- <mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error> -->
 
-        <mat-form-field appearance="fill">
-            <mat-label>Title</mat-label>
-            <input #title="ngModel" name="title" type="text" ngModel matInput required minlength="5">
-            <mat-error *ngIf="title.errors?.required" >
-                Title is required!
-            </mat-error>
-            <mat-error *ngIf="title.errors?.minlength" >
-                Title must be atleast 5 characters long!
-            </mat-error>
-        </mat-form-field>
+        <div class="left" class="row">
+            <div class="col-md-6 col-sm-12">
+            <mat-form-field appearance="fill" >
+                <mat-label>Title</mat-label>
+                <input #title="ngModel" name="title" type="text" ngModel matInput required minlength="5">
+                <mat-error *ngIf="title.errors?.required" >
+                    Title is required!
+                </mat-error>
+                <mat-error *ngIf="title.errors?.minlength" >
+                    Title must be atleast 5 characters long!
+                </mat-error>
+            </mat-form-field>
+            
+            <mat-form-field appearance="fill">
+                <mat-label>Image Url</mat-label>
+                <input #img="ngModel" name="img" type="text" ngModel matInput required pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)">
+                <mat-error *ngIf="img.errors?.required" >
+                    Image url is required!
+                </mat-error>
+                <mat-error *ngIf="img.errors?.pattern" >
+                    The image url must be in a 'https://example.png / jpg / gif' format!
+                </mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="fill">
+                <mat-label>Year</mat-label>
+                <input #year="ngModel" name="year" type="text" ngModel matInput required >
+                <mat-error *ngIf="year.errors?.required" >
+                    Year is required!
+                </mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="fill">
+                <mat-label>Engine</mat-label>
+                <mat-select #engine="ngModel" name="engine" type="text" ngModel matInput required>
+                    <mat-option *ngFor="let engine of engines" [value]="engine.name">
+                      {{engine.name}}
+                    </mat-option>
+                </mat-select>
+                <!-- <input #engine="ngModel" name="engine" type="text" ngModel matInput required> -->
+                <mat-error *ngIf="engine.errors?.required" >
+                    Engine is required!
+                </mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="fill">
+                <mat-label>Transmission</mat-label>
+                <mat-select #transmission="ngModel" name="transmission" type="text" ngModel matInput required>
+                    <mat-option *ngFor="let transmission of transmissions" [value]="transmission.name">
+                      {{transmission.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="transmission.errors?.required" >
+                    Transmission is required!
+                </mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="fill">
+                <mat-label>Place</mat-label>
+                <input #place="ngModel" name="place" type="text" ngModel matInput required>
+                <mat-error *ngIf="place.errors?.required" >
+                    Place is required!
+                </mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="fill">
+                <mat-label>Cubature</mat-label>
+                <input #cubature="ngModel" name="cubature" type="text" ngModel matInput required>
+                <mat-error *ngIf="cubature.errors?.required" >
+                    Cubature is required!
+                </mat-error>
+            </mat-form-field>
+            </div>
+        </div>
+
         
-        <mat-form-field appearance="fill">
-            <mat-label>Image Url</mat-label>
-            <input #img="ngModel" name="img" type="text" ngModel matInput required pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)">
-            <mat-error *ngIf="img.errors?.required" >
-                Image url is required!
-            </mat-error>
-            <mat-error *ngIf="img.errors?.pattern" >
-                The image url must be in a 'https://example.png / jpg / gif' format!
-            </mat-error>
-        </mat-form-field>
 
-        <mat-form-field appearance="fill">
-            <mat-label>Year</mat-label>
-            <input #year="ngModel" name="year" type="text" ngModel matInput required >
-            <mat-error *ngIf="year.errors?.required" >
-                Year is required!
-            </mat-error>
-        </mat-form-field>
+        <div class="right">
+            <mat-form-field appearance="fill">
+                <mat-label>Mileage</mat-label>
+                <input #mileage="ngModel" name="mileage" type="text" ngModel matInput required>
+                <mat-error *ngIf="mileage.errors?.required" >
+                    Mileage is required!
+                </mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="fill">
+                <mat-label>Category</mat-label>
+                <mat-select #category="ngModel" name="category" type="text" ngModel matInput required>
+                    <mat-option *ngFor="let category of categories" [value]="category.name">
+                      {{category.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="category.errors?.required" >
+                    Category is required!
+                </mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="fill">
+                <mat-label>Eurostandard</mat-label>
+                <mat-select #eurostandard="ngModel" name="eurostandard" type="text" ngModel matInput required>
+                    <mat-option *ngFor="let eurostandard of eurostandards" [value]="eurostandard.name">
+                      {{eurostandard.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="eurostandard.errors?.required" >
+                    Eurostandard is required!
+                </mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="fill">
+                <mat-label>Color</mat-label>
+                <input #color="ngModel" name="color" type="text" ngModel matInput required>
+                <mat-error *ngIf="color.errors?.required" >
+                    Color is required!
+                </mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="fill">
+                <mat-label>Description</mat-label>
+                <input #description="ngModel" name="description" type="text" ngModel matInput required minlength="10">
+                <mat-error *ngIf="description.errors?.required" >
+                    Description is required!
+                </mat-error>
+                <mat-error *ngIf="description.errors?.minlength" >
+                    Description must be atleast 10 characters long!
+                </mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="fill">
+                <mat-label>Price</mat-label>
+                <input #price="ngModel" name="price" type="text" ngModel matInput required>
+                <mat-error *ngIf="price.errors?.required" >
+                    Price is required!
+                </mat-error>
+            </mat-form-field>
+    
+            <button mat-raised-button color="accent" [disabled]="newAdForm.invalid">Submit</button>
+        </div>
 
-        <mat-form-field appearance="fill">
-            <mat-label>Engine</mat-label>
-            <input #engine="ngModel" name="engine" type="text" ngModel matInput required>
-            <mat-error *ngIf="engine.errors?.required" >
-                Engine is required!
-            </mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label>Transmission</mat-label>
-            <input #transmission="ngModel" name="transmission" type="text" ngModel matInput required>
-            <mat-error *ngIf="transmission.errors?.required" >
-                Transmission is required!
-            </mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label>Place</mat-label>
-            <input #place="ngModel" name="place" type="text" ngModel matInput required>
-            <mat-error *ngIf="place.errors?.required" >
-                Place is required!
-            </mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label>Cubature</mat-label>
-            <input #cubature="ngModel" name="cubature" type="text" ngModel matInput required>
-            <mat-error *ngIf="cubature.errors?.required" >
-                Cubature is required!
-            </mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label>Mileage</mat-label>
-            <input #mileage="ngModel" name="mileage" type="text" ngModel matInput required>
-            <mat-error *ngIf="mileage.errors?.required" >
-                Mileage is required!
-            </mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label>Category</mat-label>
-            <input #category="ngModel" name="category" type="text" ngModel matInput required>
-            <mat-error *ngIf="category.errors?.required" >
-                Category is required!
-            </mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label>Eurostandard</mat-label>
-            <input #eurostandard="ngModel" name="eurostandard" type="text" ngModel matInput required>
-            <mat-error *ngIf="eurostandard.errors?.required" >
-                Eurostandard is required!
-            </mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label>Color</mat-label>
-            <input #color="ngModel" name="color" type="text" ngModel matInput required>
-            <mat-error *ngIf="color.errors?.required" >
-                Color is required!
-            </mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label>Description</mat-label>
-            <input #description="ngModel" name="description" type="text" ngModel matInput required minlength="10">
-            <mat-error *ngIf="description.errors?.required" >
-                Description is required!
-            </mat-error>
-            <mat-error *ngIf="description.errors?.minlength" >
-                Description must be atleast 10 characters long!
-            </mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label>Price</mat-label>
-            <input #price="ngModel" name="price" type="text" ngModel matInput required>
-            <mat-error *ngIf="price.errors?.required" >
-                Price is required!
-            </mat-error>
-        </mat-form-field>
-
-        <button mat-raised-button color="accent" [disabled]="newAdForm.invalid">Submit</button>
     </form>
 </mat-card>

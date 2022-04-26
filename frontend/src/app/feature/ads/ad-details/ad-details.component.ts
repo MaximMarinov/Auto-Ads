@@ -25,6 +25,12 @@ export class AdDetailsComponent implements OnInit {
 
   ownerId: string;
   currentUser = this.authService.currentUser;
+  owner: IUser;
+
+  isShownSpecs = false;
+  isShownDescription = false;
+  isShownContactDetails = false;
+
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -42,6 +48,7 @@ export class AdDetailsComponent implements OnInit {
 
         this.ownerId = ad?.owner.toString();
         
+        this.owner = ad.owner;
 
         if (!ad) {
           this.router.navigate['/ads'];
@@ -49,6 +56,8 @@ export class AdDetailsComponent implements OnInit {
 
       });
     });
+
+    
 
     this.userService.getProfile$().subscribe({
       next: (user) => {
@@ -58,6 +67,18 @@ export class AdDetailsComponent implements OnInit {
         this.router.navigate(['/login'])
       }
     })
+  }
+
+  revealSpecs(): void {
+    this.isShownSpecs = !this.isShownSpecs;
+  }
+
+  revealDescription(): void {
+    this.isShownDescription = !this.isShownDescription;
+  }
+
+  revealContactDetails(): void {
+    this.isShownContactDetails = !this.isShownContactDetails;
   }
 
   isOwner(): boolean {

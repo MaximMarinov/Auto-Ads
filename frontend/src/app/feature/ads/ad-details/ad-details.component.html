@@ -1,8 +1,8 @@
 <mat-spinner *ngIf="!ad"></mat-spinner>
 
-<mat-card *ngIf="ad">
+<div *ngIf="ad">
     <ng-container *ngIf="!isInEditMode">
-        <mat-card-title>{{ad?.title}}</mat-card-title>
+        <!-- <mat-card-title>{{ad?.title}}</mat-card-title>
         <mat-card-content>
             <ul>
                 <li>Year: {{ad?.year}}</li>
@@ -15,17 +15,100 @@
                 <li>Color: {{ad?.color}}</li>
                 <li>Price: {{ad?.price}}</li>
             </ul>
-        </mat-card-content>
-        <ng-container *ngIf="isOwner() && (isLoggedIn$ | async)">
-            <mat-card-actions>
-                <button mat-raised-button color="accent" (click)="enterEditMode()">EDIT</button>
-                <button mat-raised-button color="warn" (click)="deleteAd()">DELETE</button>
-            </mat-card-actions>
-        </ng-container>
+        -->
+        
+
+        <section class="section section-bg" id="call-to-action" style="background-image: url(assets/images/banner-image-1-1920x500.jpg)">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 offset-lg-1">
+                        <div class="cta-content">
+                            <br>
+                            <br>
+                            <h2><em>{{ad.title}}</em></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="trainers">
+            <div class="container">
+                
+                <div class="row" id="tabs">
+                  <div class="col-lg-4">
+                    <ul>
+                      <li><a (click)="revealSpecs()"><i class="fa fa-cog"></i> Vehicle Specs</a></li>
+                      <li><a (click)="revealDescription()"><i class="fa fa-info-circle"></i> Vehicle Description</a></li>
+                      <ng-container *ngIf="isOwner() && (isLoggedIn$ | async)">
+                        <mat-card-actions>
+                            <button mat-raised-button color="accent" (click)="enterEditMode()">EDIT</button>
+                            <button mat-raised-button color="warn" (click)="deleteAd()">DELETE</button>
+                        </mat-card-actions>
+                    </ng-container> 
+                    </ul>
+                  </div>
+                  <div class="col-lg-8" >
+                    <section class='tabs-content' style="width: 100%;">
+                      <article id='tabs-1' *ngIf="!isShownSpecs">
+                        <h4>Vehicle Specs</h4>
+    
+                        <div class="row">
+    
+                           <div class="col-sm-6">
+                                <label>First registration</label>
+                           
+                                <p>{{ad.year}}</p>
+                           </div>
+    
+                           <div class="col-sm-6">
+                                <label>Mileage</label>
+                           
+                                <p>{{ad.mileage}}</p>
+                           </div>
+    
+                           <div class="col-sm-6">
+                                <label>Engine</label>
+                           
+                                <p>{{ad.engine}}</p>
+                           </div>
+    
+                           <div class="col-sm-6">
+                                <label>Cubature</label>
+                           
+                                <p>{{ad.cubature}} cc</p>
+                           </div>
+
+                           <div class="col-sm-6">
+                                <label>Transmission</label>
+                           
+                                <p>{{ad.transmission}}</p>
+                           </div>
+    
+                           <div class="col-sm-6">
+                                <label>Color</label>
+                           
+                                <p>{{ad.color}}</p>
+                           </div>
+                        </div>
+                      </article>
+                      <article id='tabs-2' *ngIf="isShownDescription">
+                        <h4>Vehicle Description</h4>
+                        
+                        <p>{{ad.description}}</p> 
+                       </article>
+        
+                    </section>
+                  </div>
+                </div>
+            </div>
+        </section>
+
+         
     </ng-container>
 
     <ng-container *ngIf="isInEditMode">
-        <mat-card>
+        <div>
             <form #editAdForm="ngForm" (ngSubmit)="editAd(editAdForm)">
         
                 <!-- <mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error> -->
@@ -145,8 +228,8 @@
         
                 <button mat-raised-button color="accent" [disabled]="editAdForm.invalid">Submit</button>
             </form>
-        </mat-card>
+        </div>
     </ng-container>
     
-</mat-card>
+</div>
 

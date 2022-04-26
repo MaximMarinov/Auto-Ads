@@ -3,8 +3,6 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import { UserService } from 'src/app/core/services/user.service';
-import { IAd } from 'src/app/shared/interfaces/ad';
-import { IUser } from 'src/app/shared/interfaces/user';
 
 @Component({
   selector: 'app-profile',
@@ -19,9 +17,12 @@ export class ProfileComponent implements OnInit {
 
   isInEditMode: boolean = false
 
-  adList: IAd[];
 
-  constructor(private userService: UserService, private router: Router, private authService: AuthService) { }
+  constructor(
+      private userService: UserService, 
+      private router: Router, 
+      private authService: AuthService,
+    ) { }
 
   ngOnInit(): void {
     this.userService.getProfile$().subscribe({

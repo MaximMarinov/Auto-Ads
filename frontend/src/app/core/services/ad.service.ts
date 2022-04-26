@@ -18,10 +18,6 @@ export class AdService {
     return this.http.get<IAd[]>(`${apiUrl}/ads`);
   }
 
-  // getUserAds$(): Observable<IAd[]> {
-  //   return this.http.get<IAd[]>(`${apiUrl}/ads/my-ads`, {withCredentials: true});
-  // }
-
   getAdById(id: string): Observable<IAd> {
     return this.http.get<IAd>(`${apiUrl}/ads/${id}`);
   }
