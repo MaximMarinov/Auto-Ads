@@ -28,7 +28,7 @@ import { RouterModule } from '@angular/router';
     AuthModule,
     SharedModule,
     PagesModule,
-    RouterModule
+    RouterModule,
   ],
   providers: [
     {

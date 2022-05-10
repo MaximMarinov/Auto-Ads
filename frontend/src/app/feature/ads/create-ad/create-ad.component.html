@@ -143,8 +143,10 @@
                     Price is required!
                 </mat-error>
             </mat-form-field>
-    
-            <button mat-raised-button color="accent" [disabled]="newAdForm.invalid">Submit</button>
+            
+            <mat-card-actions>
+                <button mat-raised-button color="accent" [disabled]="newAdForm.invalid">Submit</button>
+            </mat-card-actions>
         </div>
 
     </form>

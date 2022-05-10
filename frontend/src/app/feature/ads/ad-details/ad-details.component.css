@@ -1,21 +1,49 @@
-/* mat-form-field {
-    width: 100%;
-  }
+form {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
   
-mat-card {
-    margin: auto;
-    width: 60%;
-    padding: 10px;
-    text-align: center;
 }
 
-ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  a {
-    text-decoration: none;
-    color: white;
-  } */
+mat-form-field {
+  width: 400px;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 24px;
+  font-weight: 500;
+  margin-top: 20px;
+
+}
+#trainers {
+  margin-top: 25px;
+}
+
+mat-card-actions {
+  display: flex;
+  flex-direction: column;
+}
+
+#tabs ul li a {
+  cursor: pointer;
+}
+
+.mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent {
+  margin-bottom: 10px;
+}
+
+.submit-btn {
+  max-width: 56%;
+}
+
+.mat-card-actions:not(.mat-card-actions-align-end) .mat-button:first-child, .mat-card-actions:not(.mat-card-actions-align-end) .mat-raised-button:first-child, .mat-card-actions:not(.mat-card-actions-align-end) .mat-stroked-button:first-child {
+  margin-left: 0;
+  margin-right: 0;
+}

@@ -1,10 +1,36 @@
+form {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  
+}
+
 mat-form-field {
-  width: 100%;
+  width: 400px;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+mat-card-title {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 mat-card {
-    margin: auto;
-    width: 30%;
-    padding: 10px;
-    text-align: center;
+  margin-top: 20px;
+}
+
+mat-card-actions {
+  display: flex;
+  flex-direction: column;
+  max-width: 58%;
+}
+
+.mat-card-actions {
+  margin-left: 0px;
+  margin-right: 0px;
+  padding: 0px 0;
 }

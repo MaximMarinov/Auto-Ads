@@ -4,12 +4,7 @@ const IMG_PATTERN = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/;
 
 const schema = new Schema({
     title: { type: String, required: true },
-    img: { type: String, required: true, validate: {
-        validator(value) {
-            return IMG_PATTERN.test(value);
-        },
-        message: 'The image url must be in a "https://example.png / jpg / gif" format!'
-    }},
+    img: { type: String, required: true},
     year: {
         type: Number,
         required: true,

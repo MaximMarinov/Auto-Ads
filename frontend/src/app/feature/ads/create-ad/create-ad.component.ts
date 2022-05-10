@@ -44,6 +44,8 @@ export class CreateAdComponent implements OnInit {
 
   selectedItem: string;
 
+  adImage?: File;
+
   constructor (
       private adService: AdService, 
       private router: Router, 
@@ -61,11 +63,12 @@ export class CreateAdComponent implements OnInit {
     this.adService.createAd$(newAdForm.value).subscribe({
       next: (ad) => {
         this.router.navigate(['/ads'])
+        console.log(newAdForm)
       },
       error: (err) => {
         console.error(err);
       }
     });
-  }
+  } 
 
 }
