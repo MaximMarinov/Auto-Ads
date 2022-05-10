@@ -22,13 +22,13 @@ export class AuthService {
 
   login$(userData: {email: string, password: string }): Observable<IUser> {
     return this.http
-      .post<IUser>(`${environment.apiURL}/users/login`, userData, {withCredentials: true})
+      .post<IUser>(`/users/login`, userData, {withCredentials: true})
       .pipe(
         tap(user => this.currentUser = user))
   }
 
   register$(userData: {fullName: string, email: string, phone: string, password: string }): Observable<IUser> {
-    return this.http.post<IUser>(`${environment.apiURL}/users/register`, userData, {withCredentials: true})
+    return this.http.post<IUser>(`/users/register`, userData, {withCredentials: true})
     .pipe(
       tap(user => this.currentUser = user));
   }
