@@ -11,13 +11,13 @@ start();
 
 async function start() {
     try {
-        await mongoose.connect('mongodb://localhost:27017/auto-ads', {
+        await mongoose.connect('mongodb+srv://max:stratos5566@auto-ads.31esj.mongodb.net/auto-ads?retryWrites=true&w=majority', {
             useUnifiedTopology: true,
             useNewUrlParser: true
         });
         console.log('Database ready');
     } catch (err) {
-        console.error('Database connection failed');
+        console.error(err);
         process.exit(1);
     }
 
