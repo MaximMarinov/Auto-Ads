@@ -5,7 +5,7 @@ const cors = require('./middlewares/cors');
 const adsController = require('./controllers/ads');
 const usersController = require('./controllers/users');
 const auth = require('./middlewares/auth');
-
+const path = require('path');
 
 start();
 
@@ -26,6 +26,10 @@ async function start() {
     app.use(cors());
     app.use(cookieParser());
     app.use(auth());
+    app.use(express.static('public'));
+    app.get('*',(req,res)=>{
+      res.sendFile(path.join(__dirname,'public/index.html'));
+  });
     app.use('/ads', adsController);
     app.use('/users', usersController);
 
