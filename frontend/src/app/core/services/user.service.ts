@@ -22,6 +22,6 @@ export class UserService {
   }  
 
   editProfile$(body: { fullName: string, email: string, phone: string }): Observable<IUser> {
-      return this.http.put<IUser>(`${environment.apiURL}/users/profile`, body, {withCredentials: true})
+      return this.http.put<IUser>(`/users/profile`, body, {withCredentials: true})
     }
   }

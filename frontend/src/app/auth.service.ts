@@ -34,12 +34,12 @@ export class AuthService {
   }
 
   logout$(): Observable<any> {
-    return this.http.get<any>(`${environment.apiURL}/users/logout`, { withCredentials: true});
+    return this.http.get<any>(`/users/logout`, { withCredentials: true});
   }
 
   authenticate(): Observable<IUser> {
     return this.http
-    .get<IUser>(`${environment.apiURL}/users/profile`, {withCredentials: true})
+    .get<IUser>(`/users/profile`, {withCredentials: true})
     .pipe(
       tap(currentProfile => this.handleLogin(currentProfile)), catchError((err) => {
         return EMPTY;
