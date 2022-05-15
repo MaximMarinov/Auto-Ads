@@ -11,9 +11,12 @@ start();
 
 async function start() {
     try {
-        await mongoose.connect('mongodb+srv://max:stratos5566@auto-ads.31esj.mongodb.net/auto-ads?retryWrites=true&w=majority', {
-            useUnifiedTopology: true,
-            useNewUrlParser: true
+        await mongoose.connect(
+            'mongodb+srv://max:stratos5566@auto-ads.31esj.mongodb.net/auto-ads?retryWrites=true&w=majority',
+            {
+                useUnifiedTopology: true,
+                useNewUrlParser: true,
+                'AUTHENTICATION_DATABASE': null,
         });
         console.log('Database ready');
     } catch (err) {
