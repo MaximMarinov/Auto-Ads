@@ -6,6 +6,8 @@ import { IUser } from 'src/app/shared/interfaces/user';
 import { environment } from 'src/environments/environment';
 import { StorageService } from './storage.service';
 
+const apiUrl = environment.apiURL;
+
 export interface CreateUserDto {
   fullName: string,
   email: string,
@@ -18,10 +20,10 @@ export class UserService {
   }
 
   getProfile$(): Observable<IUser> {
-    return this.http.get<IUser>(`/users/profile`, { withCredentials: true })
+    return this.http.get<IUser>(`${apiUrl}/users/profile`, { withCredentials: true })
   }  
 
   editProfile$(body: { fullName: string, email: string, phone: string }): Observable<IUser> {
-      return this.http.put<IUser>(`/users/profile`, body, {withCredentials: true})
+      return this.http.put<IUser>(`${apiUrl}/users/profile`, body, {withCredentials: true})
     }
   }

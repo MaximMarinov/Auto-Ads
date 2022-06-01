@@ -12,11 +12,10 @@ start();
 async function start() {
     try {
         await mongoose.connect(
-            'mongodb+srv://max:stratos5566@auto-ads.31esj.mongodb.net/auto-ads?retryWrites=true&w=majority',
+            'mongodb://localhost:27017',
             {
                 useUnifiedTopology: true,
                 useNewUrlParser: true,
-                'AUTHENTICATION_DATABASE': null,
         });
         console.log('Database ready');
     } catch (err) {
@@ -29,14 +28,14 @@ async function start() {
     app.use(cors());
     app.use(cookieParser());
     app.use(auth());
-    app.use(express.static('public'));
-    app.get('*',(req,res)=>{
-      res.sendFile(path.join(__dirname,'public/index.html'));
-  });
+//     app.use(express.static('public'));
+//     app.get('*',(req,res)=>{
+//       res.sendFile(path.join(__dirname,'public/index.html'));
+//   });
     app.use('/ads', adsController);
     app.use('/users', usersController);
 
-    const port = process.env.PORT || 8080;
+    const port = process.env.PORT || 3030;
 
     app.get('/', (req, res) => res.json({ message: 'REST service operational'}));
 

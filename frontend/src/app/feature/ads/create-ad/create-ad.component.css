@@ -34,3 +34,7 @@ mat-card-actions {
   margin-right: 0px;
   padding: 0px 0;
 }
+
+input[type="file"] {
+  visibility: hidden;
+}

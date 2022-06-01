@@ -15,11 +15,11 @@ export class AdService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   getAllAds$(): Observable<IAd[]> {
-    return this.http.get<IAd[]>(`/ads`);
+    return this.http.get<IAd[]>(`${apiUrl}/ads`);
   }
 
   getAdById(id: string): Observable<IAd> {
-    return this.http.get<IAd>(`/ads/${id}`);
+    return this.http.get<IAd>(`${apiUrl}/ads/${id}`);
   }
 
   createAd$(
@@ -39,7 +39,7 @@ export class AdService {
       price: number
     }): Observable<IAd> {
 
-    return this.http.post<IAd>(`/ads`, body, {withCredentials: true})
+    return this.http.post<IAd>(`${apiUrl}/ads`, body, {withCredentials: true})
   }
 
   editAd$(
@@ -60,11 +60,11 @@ export class AdService {
       price: number
     }): Observable<IAd> {
 
-    return this.http.put<IAd>(`/ads/${id}`, body, {withCredentials: true})
+    return this.http.put<IAd>(`${apiUrl}/ads/${id}`, body, {withCredentials: true})
   }
 
   deleteAd$(id: string): Observable<IAd> {
-    return this.http.delete<IAd>(`/ads/${id}`, {withCredentials: true});
+    return this.http.delete<IAd>(`${apiUrl}/ads/${id}`, {withCredentials: true});
   }
 
 }

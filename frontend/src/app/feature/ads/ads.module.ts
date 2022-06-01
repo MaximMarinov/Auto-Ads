@@ -6,7 +6,7 @@ import { AdService } from 'src/app/core/services/ad.service';
 import { AngularMaterialModule } from 'src/app/material.module';
 import { AdDetailsComponent } from './ad-details/ad-details.component';
 import { AdsRoutingModule } from './ads-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
@@ -20,7 +20,8 @@ import { RouterModule } from '@angular/router';
     AngularMaterialModule,
     AdsRoutingModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ],
   exports: [
     AdListComponent,

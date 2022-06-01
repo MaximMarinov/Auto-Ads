@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth.service';
+import { emailValidator } from 'src/app/auth/util';
 import { AdService } from 'src/app/core/services/ad.service';
 @Component({
   selector: 'app-create-ad',
@@ -46,10 +47,27 @@ export class CreateAdComponent implements OnInit {
 
   adImage?: File;
 
+  createFormGroup = this.formBuilder.group({
+    'title': new FormControl('', [Validators.required, Validators.minLength(5)]),
+    'img': new FormControl('', [Validators.required]),
+    'year': new FormControl('', [Validators.required]),
+    'engine': new FormControl('', [Validators.required]),
+    'transmission': new FormControl('', [Validators.required]),
+    'place': new FormControl('', [Validators.required]),
+    'cubature': new FormControl('', [Validators.required]),
+    'mileage': new FormControl('', [Validators.required]),
+    'category': new FormControl('', [Validators.required]),
+    'eurostandard': new FormControl('', [Validators.required]),
+    'color': new FormControl('', [Validators.required]),
+    'description': new FormControl('', [Validators.required, Validators.minLength(10)]),
+    'price': new FormControl('', [Validators.required]),
+  });
+
   constructor (
       private adService: AdService, 
       private router: Router, 
-      private authService: AuthService, 
+      private authService: AuthService,
+      private formBuilder: FormBuilder, 
     ) { }
 
   isLoggedIn$: Observable<boolean> = this.authService.isLoggedIn$;
@@ -57,18 +75,37 @@ export class CreateAdComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
+  onImagePicked(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.createFormGroup.patchValue({img: file});
+    this.createFormGroup.get('img').updateValueAndValidity();
+    console.log(file);
+    console.log(this.createFormGroup);
+  }
 
-  submitNewAd(newAdForm: NgForm): void {
-    this.adService.createAd$(newAdForm.value).subscribe({
-      next: (ad) => {
-        this.router.navigate(['/ads'])
-        console.log(newAdForm)
-      },
-      error: (err) => {
-        console.error(err);
-      }
-    });
-  } 
+  handleCreate(): void {
+    this.adService.createAd$(this.createFormGroup.value).subscribe({
+          next: (ad) => {
+            this.router.navigate(['/ads'])
+            console.log(this.createFormGroup)
+          },
+          error: (err) => {
+            console.error(err);
+          }
+        });
+  }
+
+
+  // submitNewAd(newAdForm: NgForm): void {
+  //   this.adService.createAd$(newAdForm.value).subscribe({
+  //     next: (ad) => {
+  //       this.router.navigate(['/ads'])
+  //       console.log(newAdForm)
+  //     },
+  //     error: (err) => {
+  //       console.error(err);
+  //     }
+  //   });
+  // } 
 
 }
