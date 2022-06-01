@@ -3,7 +3,8 @@
 <div *ngIf="ad">
     <ng-container *ngIf="!isInEditMode">
 
-        <section class="section section-bg" id="call-to-action" style="background-image: url(/frontend/src/assets/images/banner-image-1-1920x500.jpg)">
+        <section class="section section-bg" id="call-to-action">
+            <img src="{{ad.img}}" alt="">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-10 offset-lg-1">

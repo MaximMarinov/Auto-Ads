@@ -3,7 +3,7 @@ import { IUser } from "./user";
 export interface IAd {
     _id: string;
     title: string;
-    img: string;
+    img: File;
     year: number;
     engine: string;
     transmission: string;

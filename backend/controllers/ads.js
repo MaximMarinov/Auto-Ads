@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
         if (isValid) {
             error = null;
         }
-        cb(error, "backend/images");
+        cb(error, "D:/.SOFTUNI/ANGULAR/Auto-Ads/backend/images");
     },
     filename: (req, file, cb) => {
         const name = file.originalname.toLowerCase().split(' ').join('-');
@@ -34,10 +34,11 @@ router.get('/', async (req, res) => {
     res.json(data);
 });
 
-router.post('/', multer(storage).single('img'), isAuth(), async (req, res) => {
+router.post('/', multer({storage: storage}).single('img'), isAuth(), async (req, res) => {
+    const url = req.protocol + '://' + req.get('host');
     const item = {
         title: req.body.title,
-        img: req.body.img,
+        img: url + '/images/' + req.file.filename,
         year: req.body.year,
         engine: req.body.engine,
         transmission: req.body.transmission,
@@ -51,6 +52,7 @@ router.post('/', multer(storage).single('img'), isAuth(), async (req, res) => {
         price: req.body.price,        
         owner: req.user._id
     };
+
 
     try {
         const result = await api.create(item);

@@ -49,7 +49,7 @@ export class CreateAdComponent implements OnInit {
 
   createFormGroup = this.formBuilder.group({
     'title': new FormControl('', [Validators.required, Validators.minLength(5)]),
-    'img': new FormControl('', [Validators.required]),
+    'img': new FormControl(null, [Validators.required]),
     'year': new FormControl('', [Validators.required]),
     'engine': new FormControl('', [Validators.required]),
     'transmission': new FormControl('', [Validators.required]),

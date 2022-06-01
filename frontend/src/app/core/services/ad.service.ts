@@ -25,7 +25,7 @@ export class AdService {
   createAd$(
     body: {
       title: string,
-      img: string,
+      img: File,
       year: number,
       engine: string,
       transmission: string,
@@ -37,9 +37,24 @@ export class AdService {
       color: string,
       description: string,
       price: number
-    }): Observable<IAd> {
+    }): Observable<IAd> { 
 
-    return this.http.post<IAd>(`${apiUrl}/ads`, body, {withCredentials: true})
+      const postData = new FormData;
+      postData.append('title', body.title);
+      postData.append('img', body.img, body.title);
+      postData.append('year', body.year.toString());
+      postData.append('engine', body.engine);
+      postData.append('transmission', body.transmission);
+      postData.append('place', body.place);
+      postData.append('cubature', body.cubature.toString());
+      postData.append('mileage', body.mileage.toString());
+      postData.append('category', body.category);
+      postData.append('eurostandard', body.eurostandard.toString());
+      postData.append('color', body.color);
+      postData.append('description', body.description);
+      postData.append('price', body.price.toString());
+
+    return this.http.post<IAd>(`${apiUrl}/ads`, postData, {withCredentials: true})
   }
 
   editAd$(
