@@ -45,7 +45,7 @@ export class CreateAdComponent implements OnInit {
 
   selectedItem: string;
 
-  adImage?: File;
+  imagePreview: string;
 
   createFormGroup = this.formBuilder.group({
     'title': new FormControl('', [Validators.required, Validators.minLength(5)]),
@@ -79,8 +79,12 @@ export class CreateAdComponent implements OnInit {
     const file = (event.target as HTMLInputElement).files[0];
     this.createFormGroup.patchValue({img: file});
     this.createFormGroup.get('img').updateValueAndValidity();
-    console.log(file);
-    console.log(this.createFormGroup);
+    const reader = new FileReader;
+    reader.onload = () => {
+      this.imagePreview = reader.result as string;
+    };
+
+    reader.readAsDataURL(file);
   }
 
   handleCreate(): void {
