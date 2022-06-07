@@ -1,7 +1,7 @@
 # Auto Ads
 A MEAN Stack Web Application, built with Angular, Node.js, Express.js and MongoDB. Designed with Vanilla CSS.
 
-# Conception
+# Concept
 The idea of this website is to be a platform for posting ads about automobiles.
 
 # Non-user (guest) Section
